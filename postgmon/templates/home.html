@@ -1,0 +1,96 @@
+{% extends 'base.html' %}
+{% load static %}
+
+
+
+{% block title %}
+pybug
+{% endblock %}
+
+{% block content %}
+<style>
+    .orange {
+        background-color: orange;
+    }
+    .clim {
+        background-color:orchid;
+    }
+    .sax {
+        background-color: peachpuff;
+        margin-left: 0px;
+        padding-left: 7px;
+    }
+    .vox {
+        background-color: goldenrod;
+    }
+    .lok {
+        font-style:oblique;
+        font-weight:bolder;
+    }
+</style>
+<h3>Hello {{request.user}}</h3>
+<div class="btn btn-outline-success my-2 my-sm-0 vox"><a href="{% url 'logoutuser' %}">Logout</a></div>
+
+<div class="container">
+    <div class="row">
+    <div class="col-md-4">
+        <div class="sax">
+
+            <form method="POST" >
+                {% csrf_token %}
+                <div class="">
+                <center class="lok">Please fill the form</center>
+                <div>{{floxy.title.label}}</div> 
+                <div>{{floxy.title}}</div>
+                <div>{{floxy.date_of_birth.label}}</div> 
+                <div>{{floxy.date_of_birth}}</div> 
+                <div>{{floxy.comment.label}}</div> 
+                <div>{{floxy.comment}}</div> 
+                <div>{{floxy.created.label}}</div> 
+                <div>{{floxy.created}}</div> <br />
+                <input type="submit" value="Submit" class="btn btn-outline-success my-2 my-sm-0">
+                </div>
+            </form>
+            </div>
+            <div>
+            {% for flo in flura %}
+            <br />
+            <div>title: {{flo.title}}</div>
+            <div>author: {{flo.author}}</div>
+            <div>DOB: {{flo.date_of_birth}}</div>
+            <div>comment: {{flo.comment}}</div>
+            <div>date created: {{flo.created}}</div>
+            
+            <div class="btn btn-outline-success my-2 my-sm-0 sax"><a href="{% url 'update' flo.id %}">Update</a></div>
+            <div class="btn btn-outline-success my-2 my-sm-0 clim"><a href="{% url 'delete' flo.id %}">Delete</a></div>
+            <br/>
+            {% endfor %}
+             
+        </div>
+        </div>
+    <div class="col-md-4">
+        <div class="clim">
+            This is the second div tag
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="orange">
+            the third one
+        </div>
+    </div>
+</div>
+</div>
+<br>
+<br>
+<br>
+<!--the output of the form-->
+    <div class="col-md-4">
+       
+    </div>
+    <div class="col-md-4">
+        
+    </div>
+    </div>
+</div>
+</div>
+{% endblock %}

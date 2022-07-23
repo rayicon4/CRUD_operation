@@ -1,0 +1,12 @@
+
+
+{% block content %}
+
+<form method="POST" action="">
+{% csrf_token %}
+{{cisa}}
+<input type="submit" value="submit">
+
+</form>
+
+{% endblock %}
